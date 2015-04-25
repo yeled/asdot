@@ -1,0 +1,11 @@
+#!/bin/bash
+
+ASPLAIN=$1
+
+LOW_BIT=$(echo "$ASPLAIN 65535 / p" | dc)
+
+HIGH_BIT=$(echo "$ASPLAIN $LOW_BIT 65535 * - p" | dc)
+
+HIGH_BIT_REMAINDER=$(echo "$HIGH_BIT $LOW_BIT - p" | dc)
+
+echo ${LOW_BIT}:${HIGH_BIT_REMAINDER}

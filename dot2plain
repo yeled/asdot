@@ -1,0 +1,9 @@
+#!/bin/bash
+
+ASDOT_LOW=$(echo $1 | cut -d: -f 1)
+ASDOT_HIGH=$(echo $1 | cut -d: -f 2)
+
+LOW_BIT=$(echo "$ASDOT_LOW 65536 * p" | dc)
+HIGH_BIT=$ASDOT_HIGH
+
+echo "$LOW_BIT $HIGH_BIT + p" | dc
