@@ -14,8 +14,8 @@ int main(int argc, char *argv[])
   char asn[strlen(argv[1])] ;
   strcpy(asn, argv[1]);
   char dot = '.';
-  char *asdot = strchr(asn, dot);
-  unsigned int asn_int = atoi(asn);
+  char *asdot = strchr(asn, dot); // search for a '.' in the string
+  unsigned int asn_int = atoi(asn); // convert string -> int
 
   if(asdot != NULL ) { // if '.' is found, then we have asdot
 
@@ -25,22 +25,20 @@ int main(int argc, char *argv[])
     unsigned int asn_low = asn_int;
     unsigned int asn_high = atoi(asdot+1); // +1 is magic to find next string
     printf("%u\n", (asn_low<<16)+asn_high); // multiply by 65536
-    printf("(%d*65535+%d)\n", asn_low, asn_high);
-    printf("low: %d\nhigh: %d\n", asn_low, asn_high);
+    //printf("(%d*65535+%d)\n", asn_low, asn_high);
+    //printf("low: %d\nhigh: %d\n", asn_low, asn_high);
 
   } else if(asn_int <= 65535 ) { // normal low asn
 
     printf("2 Byte ASPLAIN: ");
-    printf("%u", asn_int);
-    printf("\n");
+    printf("%u\n", asn_int);
     //printf("(%u)\n", asn);
 
   } else if(asn_int >= 65536) { // otherwise, asplain
 
     printf("4 Byte ASPLAIN: ");
-    printf("%u.%u", asn_int/65536, asn_int%65536);
-    printf("\n");
-    printf("(%u)\n", asn_int);
+    printf("%u.%u\n", asn_int/65536, asn_int%65536);
+    //printf("(%u)\n", asn_int);
   }
 
     return (0);
